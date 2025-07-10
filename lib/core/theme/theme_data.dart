@@ -55,7 +55,7 @@ ThemeData themeData = ThemeData(
         color: Colors.black,
       ),
       headlineSmall: TextStyle(
-        fontSize: 24.w,
+        fontSize: 20.w,
         fontWeight: FontWeight.w700,
         color: Colors.black,
       ),
