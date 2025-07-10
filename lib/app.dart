@@ -39,7 +39,10 @@ class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
                 return Center(
                   child: ConstrainedBox(
                     constraints: BoxConstraints(
-                      maxWidth: 480.w, // or any suitable value for large displays
+                      maxWidth: 412.w, // Set a maximum width for the app
+
+
+                       // or any suitable value for large displays
                     ),
                     child: child!,
                   ),

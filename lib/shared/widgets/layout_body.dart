@@ -16,19 +16,23 @@ class LayoutBody extends StatelessWidget {
         // Rounded Header Background
         Positioned(
           top: 0.h, // Push it up to only show the curved bottom
-          left: -10.w,
-          right: -10.w,
+          left: -30.w,
+          right: -30.w,
           child: Container(
             width: 414.w,
             height: 287.h,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('asset/layout.png'), // Replace with your image path
+                image: AssetImage('asset/layout.png'),
+                // Replace with your image path
                 fit: BoxFit.cover,
-                alignment: Alignment.topRight, // Align the image to the bottom center
+                alignment:
+                    Alignment.topRight, // Align the image to the bottom center
               ),
-              borderRadius: BorderRadius.circular(40),
-
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(80.r),
+                bottomRight: Radius.circular(80.r),
+              ),
             ),
           ),
         ),
@@ -39,17 +43,11 @@ class LayoutBody extends StatelessWidget {
           child: appBar, // The app bar widget
         ),
 
-
         // Main Content
-        SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              child, // The main content of the page
-            ],
-          ),
-        ),
+        Positioned.fill(
+           top: 155.h,
+
+            child: SafeArea(child: child)),
       ],
     );
   }

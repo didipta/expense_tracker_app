@@ -45,50 +45,50 @@ ThemeData themeData = ThemeData(
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
-        fontSize: 32.w,
-        fontWeight: FontWeight.w700,
-        color: Colors.black,
-      ),
-      headlineMedium: TextStyle(
-        fontSize: 24.w,
-        fontWeight: FontWeight.w700,
-        color: Colors.black,
-      ),
-      headlineSmall: TextStyle(
-        fontSize: 20.w,
-        fontWeight: FontWeight.w700,
-        color: Colors.black,
-      ),
+      fontSize: 32.sp,
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 24.sp,
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 20.sp,
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
     bodyLarge: TextStyle(
-        fontSize: 16.w,
-        fontWeight: FontWeight.w400,
-        color: Colors.black,
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 14.w,
-        fontWeight: FontWeight.w400,
-        color: Colors.black,
-      ),
-      bodySmall: TextStyle(
-        fontSize: 12.w,
-        fontWeight: FontWeight.w400,
-        color: Colors.black,
-      ),
-      titleLarge: TextStyle(
-        fontSize: 20.w,
-        fontWeight: FontWeight.w700,
-        color: Colors.black,
-      ),
-      titleMedium: TextStyle(
-        fontSize: 18.w,
-        fontWeight: FontWeight.w700,
-        color: Colors.black,
-  ),
-      titleSmall: TextStyle(
-        fontSize: 16.w,
-        fontWeight: FontWeight.w700,
-        color: Colors.black,
-      ),
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w400,
+      color: Colors.black,
+    ),
+    bodyMedium: TextStyle(
+      fontSize: 14.sp,
+      fontWeight: FontWeight.w400,
+      color: Colors.black,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 12.sp,
+      fontWeight: FontWeight.w400,
+      color: Colors.black,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 20.sp,
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 18.sp,
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 16.sp,
+      fontWeight: FontWeight.w700,
+      color: Colors.black,
+    ),
   ),
 
 );

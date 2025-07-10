@@ -9,7 +9,6 @@ class LogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 214.w,
-      height: 44.h,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
 
