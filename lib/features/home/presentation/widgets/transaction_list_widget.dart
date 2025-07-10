@@ -25,7 +25,7 @@ class TransactionListWidget extends StatelessWidget {
 
     return ListView.builder(
       padding: EdgeInsets.zero,
-      shrinkWrap: true,
+      shrinkWrap: false,
       physics: const BouncingScrollPhysics(),
       scrollDirection: Axis.vertical,
       primary: false,
