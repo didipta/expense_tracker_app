@@ -33,7 +33,7 @@ class HomeAppbarWidget extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(right: 24.w),
           width: 40.w,
-          height: 40.h,
+          height: 40.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6.67.r),
             color: Colors.white.withOpacity(0.1),

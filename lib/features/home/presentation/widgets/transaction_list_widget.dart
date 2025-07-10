@@ -1,7 +1,5 @@
 import 'package:expense_tracker_app/features/home/presentation/widgets/transaction_item.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../auth/domain/entities/transaction.dart';
 
@@ -24,11 +22,9 @@ class TransactionListWidget extends StatelessWidget {
     ];
 
     return ListView.builder(
-      padding: EdgeInsets.zero,
-      shrinkWrap: false,
-      physics: const BouncingScrollPhysics(),
-      scrollDirection: Axis.vertical,
-      primary: false,
+      padding: EdgeInsets.zero, // Remove default padding
+      physics: const NeverScrollableScrollPhysics(), // Disable its own scrolling
+      shrinkWrap: true, // Make it take only the needed height
       itemCount: transactionList.length,
       itemBuilder: (context, index) {
         final transaction = transactionList[index];

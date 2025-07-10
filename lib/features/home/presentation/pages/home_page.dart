@@ -26,39 +26,37 @@ class _HomePageState extends State<HomePage> {
             children: [
               HomeTotalBalanceWidget(),
               SizedBox(height: 20.h),
-              Flexible(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Transactions History',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                          ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Transactions History',
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
                         ),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            minimumSize: Size(0, 0),
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'See All',
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(color: Colors.black45),
-                          ),
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size(0, 0),
                         ),
-                      ],
-                    ),
-                    SizedBox(height: 10.h),
+                        onPressed: () {},
+                        child: Text(
+                          'See All',
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(color: Colors.black45),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 10.h),
 
-                    Expanded(child: TransactionListWidget()),
+                  TransactionListWidget(),
 
-                  ],
-                ),
+                ],
               ),
 
             ],

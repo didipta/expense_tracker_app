@@ -1,4 +1,5 @@
 import 'package:expense_tracker_app/features/home/presentation/pages/home_page.dart';
+import 'package:expense_tracker_app/features/statistics/presentation/pages/statistic_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -22,15 +23,7 @@ class _MainBottomNavState extends State<MainBottomNav> {
   Widget build(BuildContext context) {
     var continer = [
       HomePage(),
-      Container(
-        color: Colors.blueGrey.withOpacity(0.1),
-        child: Center(
-          child: Text(
-            'Statistics Page',
-
-          ),
-        ),
-      )
+     StatisticsScreen()
     ];
     return Scaffold(
       body:continer[_selectedIndex],
