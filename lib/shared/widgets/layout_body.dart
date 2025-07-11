@@ -40,7 +40,8 @@ class LayoutBody extends StatelessWidget {
                 offset: Offset(0, 0.h), // negative top spacing
                 child: Column(
                   children: [
-                    SizedBox(height: 52.h),
+                    SizedBox(height: 64.h),
+
                     appBar,
                     child,
                   ],

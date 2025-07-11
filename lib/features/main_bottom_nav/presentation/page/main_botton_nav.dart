@@ -24,8 +24,20 @@ class _MainBottomNavState extends State<MainBottomNav> {
   Widget build(BuildContext context) {
     var continer = [
       HomePage(),
-     StatisticsScreen(),
-      ConnectWalletScreen(),
+     StatisticsScreen(
+       onBackPressed:() {
+          setState(() {
+            _selectedIndex = 0;
+          });
+        },
+     ),
+      ConnectWalletScreen(
+        onBackPressed: () {
+          setState(() {
+            _selectedIndex = 0;
+          });
+        },
+      ),
     ];
     return Scaffold(
       body:continer[_selectedIndex],

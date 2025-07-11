@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../widgets/chart_card.dart';
 import '../widgets/tab_selector.dart';
 import '../widgets/top_spending_lis.dart';
 
 class StatisticsScreen extends StatefulWidget {
-  const StatisticsScreen({super.key});
+  Function onBackPressed;
+  StatisticsScreen({super.key, required this.onBackPressed});
 
   @override
   State<StatisticsScreen> createState() => _StatisticsScreenState();
@@ -24,7 +26,12 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
         foregroundColor: Colors.black,
         centerTitle: true,
         elevation: 1,
-        leading: null,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_outlined, color: Colors.black),
+          onPressed: () => {
+            widget.onBackPressed(),
+          },
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.save_alt_outlined, color: Colors.black),
