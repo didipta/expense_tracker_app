@@ -1,5 +1,6 @@
 import 'package:expense_tracker_app/features/home/presentation/pages/home_page.dart';
 import 'package:expense_tracker_app/features/statistics/presentation/pages/statistic_screen.dart';
+import 'package:expense_tracker_app/features/wallet/presentation/pages/connect_wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -23,7 +24,8 @@ class _MainBottomNavState extends State<MainBottomNav> {
   Widget build(BuildContext context) {
     var continer = [
       HomePage(),
-     StatisticsScreen()
+     StatisticsScreen(),
+      ConnectWalletScreen(),
     ];
     return Scaffold(
       body:continer[_selectedIndex],
