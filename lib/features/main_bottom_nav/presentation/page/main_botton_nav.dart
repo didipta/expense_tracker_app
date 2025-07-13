@@ -1,4 +1,5 @@
 import 'package:expense_tracker_app/features/home/presentation/pages/home_page.dart';
+import 'package:expense_tracker_app/features/profile/presentation/pages/profile_screen.dart';
 import 'package:expense_tracker_app/features/statistics/presentation/pages/statistic_screen.dart';
 import 'package:expense_tracker_app/features/wallet/presentation/pages/connect_wallet_screen.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,7 @@ class _MainBottomNavState extends State<MainBottomNav> {
           });
         },
       ),
+      ProfileScreen()
     ];
     return Scaffold(
       body:continer[_selectedIndex],

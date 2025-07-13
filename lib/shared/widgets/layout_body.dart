@@ -16,26 +16,28 @@ class LayoutBody extends StatelessWidget {
           Stack(
             children: [
               Container(
-                width: double.infinity,
+                width: 414.w,
                 height: 287.h,
                 decoration: BoxDecoration(
                   image: const DecorationImage(
                     image: AssetImage('asset/layout.png'),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     alignment: Alignment.topRight,
                   ),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(50.r),
-                    bottomRight: Radius.circular(50.r),
+
+                ),
+                child: Container(
+                  width: 267.w,
+                  height: 219.h,
+                  child:Image(
+                    image: AssetImage('asset/roundshap.png'),
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.topLeft,
+
                   ),
                 ),
               ),
-              // Positioned(
-              //   top: 74.h,
-              //   left: 0,
-              //   right: 0,
-              //   child: appBar,
-              // ),
+
               Transform.translate(
                 offset: Offset(0, 0.h), // negative top spacing
                 child: Column(

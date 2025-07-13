@@ -9,30 +9,9 @@ class LogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 214.w,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-
-        children: [
-          Container(
-            padding: EdgeInsets.only(left: 4.w, right: 4.w),
-            color: Theme.of(context).colorScheme.primary,
-            child: Text("Expense",style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-            letterSpacing: 0.5,
-              fontWeight: FontWeight.w600,
-              color: Theme.of(context).colorScheme.onPrimary,
-            )),
-          ),
-          SizedBox(width: 4.w),
-          Container(
-            child: Text(
-              "Tracker",
-              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                letterSpacing: 0.5,
-                fontWeight: FontWeight.w600,
-              )
-            ),
-          ),
-        ],
+      child: Image.asset(
+        'asset/logo.png',
+        fit: BoxFit.fill,
       ),
     );
   }
