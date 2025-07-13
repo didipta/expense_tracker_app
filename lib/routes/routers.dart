@@ -1,5 +1,6 @@
 import 'package:expense_tracker_app/features/auth/presentation/pages/login_page.dart';
 import 'package:expense_tracker_app/features/auth/presentation/pages/register_page.dart';
+import 'package:expense_tracker_app/features/expense/presentation/pages/add_expense_screen.dart';
 import 'package:expense_tracker_app/features/home/presentation/pages/home_page.dart';
 import 'package:expense_tracker_app/features/main_bottom_nav/presentation/page/main_botton_nav.dart';
 import 'package:expense_tracker_app/features/splash/presentation/pages/splash_page.dart';
@@ -18,5 +19,6 @@ final GoRouter router = GoRouter(
     GoRoute(path: "/register", builder: (context, state) => const RegisterPage()),
     // Placeholder for register page
     GoRoute(path: "/home", builder: (context, state) => const MainBottomNav()), // Placeholder for home page
+    GoRoute(path: "/add-expense", builder: (context, state) => const AddExpenseScreen()), // Placeholder for add expense page
   ],
 );

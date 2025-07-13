@@ -4,6 +4,7 @@ import 'package:expense_tracker_app/features/statistics/presentation/pages/stati
 import 'package:expense_tracker_app/features/wallet/presentation/pages/connect_wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 class MainBottomNav extends StatefulWidget {
   const MainBottomNav({super.key});
@@ -58,6 +59,8 @@ class _MainBottomNavState extends State<MainBottomNav> {
           shape: const CircleBorder(),
           elevation: 10.0,
           onPressed: () {
+            context.go('/add-expense'); // Navigate to add expense page
+
             // Action for central FAB
           },
           child: Icon(Icons.add, color: Colors.white, size: 38.sp),
