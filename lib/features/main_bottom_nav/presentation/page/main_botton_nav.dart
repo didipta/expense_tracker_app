@@ -39,7 +39,13 @@ class _MainBottomNavState extends State<MainBottomNav> {
           });
         },
       ),
-      ProfileScreen()
+      ProfileScreen(
+        onBackPressed: () {
+          setState(() {
+            _selectedIndex = 0;
+          });
+        },
+      )
     ];
     return Scaffold(
       body:continer[_selectedIndex],

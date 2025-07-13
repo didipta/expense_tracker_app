@@ -8,6 +8,7 @@ class ProfileEditView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: 20),
         const ProfileTextField(label: "Name", initialValue: "Enjelin Morgeana"),
         const ProfileTextField(label: "Email", initialValue: "enjelinmorgeana@gmail.com"),
         const ProfileTextField(label: "Password", isPassword: true, initialValue: "********"),
@@ -15,10 +16,7 @@ class ProfileEditView extends StatelessWidget {
         const ProfileTextField(label: "Number of Bank Accounts", initialValue: "2"),
         const SizedBox(height: 20),
         ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.purple,
-            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
-          ),
+
           onPressed: () {},
           child: const Text("Update profile"),
         )
