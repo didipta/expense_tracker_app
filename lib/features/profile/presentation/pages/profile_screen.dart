@@ -3,7 +3,9 @@ import 'package:expense_tracker_app/features/profile/presentation/widgets/profil
 import 'package:expense_tracker_app/shared/widgets/layout_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../shared/widgets/language_widget.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_menu_tile.dart';
 
@@ -72,13 +74,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ProfileMenuTile(
           icon: Icons.security,
           title: 'Login and security',
-          onTap: () {},
+          onTap: () {
+            context.go("/login");
+          },
         ),
         ProfileMenuTile(
           icon: Icons.lock,
           title: 'Data and privacy',
           onTap: () {},
         ),
+        LanguageWidget(),
       ],
     );
   }
