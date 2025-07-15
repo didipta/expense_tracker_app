@@ -100,6 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: 363.66.w,
                       child: ElevatedButton(
                         onPressed: () {
+
                           context.go('/home');
                         },
 
