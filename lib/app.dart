@@ -16,6 +16,15 @@ class ExpenseTrackerApp extends StatefulWidget {
 }
 
 class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   FirebaseCrashlytics.instance.setUserIdentifier('rafat-meraz');
+  //   FirebaseCrashlytics.instance.setCustomKey('UserId', 1230293);
+  //   FirebaseCrashlytics.instance.log('Entered Home Screen');
+  //
+  //   FirebaseAnalytics.instance.setUserProperty(name: 'user-id', value: '342row8js');
+  // }
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

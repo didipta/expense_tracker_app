@@ -2,6 +2,7 @@ import 'package:expense_tracker_app/core/localization/l10n/app_localizations.dar
 import 'package:expense_tracker_app/shared/widgets/language_widget.dart';
 import 'package:expense_tracker_app/shared/widgets/logo_widget.dart';
 import 'package:expense_tracker_app/features/auth/presentation/widgets/social_media_login.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,12 @@ class _LoginPageState extends State<LoginPage> {
                       width: 363.66.w,
                       child: ElevatedButton(
                         onPressed: () {
-
+                          FirebaseAnalytics.instance.logEvent(
+                            name: 'login_button_pressed',
+                            parameters: {
+                              'button': 'login',
+                            },
+                          );
                           context.go('/home');
                         },
 
