@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../auth/domain/entities/transaction.dart';
+import '../../../expense/domain/entities/transaction.dart';
 
 class TransactionItem extends StatelessWidget {
   final Transaction transaction;

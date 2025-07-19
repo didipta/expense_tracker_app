@@ -1,7 +1,7 @@
 import 'package:expense_tracker_app/features/home/presentation/widgets/transaction_item.dart';
 import 'package:flutter/cupertino.dart';
 
-import '../../../auth/domain/entities/transaction.dart';
+import '../../../expense/domain/entities/transaction.dart';
 
 class TransactionListWidget extends StatelessWidget {
   const TransactionListWidget({super.key});
