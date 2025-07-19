@@ -1,11 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../core/theme/material_color.dart';
 import '../../../../shared/widgets/logo_widget.dart';
+import '../blocs/auth_bloc.dart';
+import '../blocs/auth_event.dart';
+import '../blocs/auth_state.dart';
 import '../widgets/social_media_login.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -16,165 +20,171 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
 
   bool isPasswordVisible = true;
+
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passController = TextEditingController();
+  final _confirmPassController = TextEditingController();
+
+  void _submit() {
+    if (_formKey.currentState!.validate()) {
+      context.read<AuthBloc>().add(AuthRegisterRequested(
+        fullName: _nameController.text.trim(),
+        email: _emailController.text.trim(),
+        password: _passController.text.trim(),
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Container(
-          padding:EdgeInsets.only(left: 24.w, right: 24.w,top: 92.h, bottom: 58.h),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                LogoWidget(),
-                SizedBox(height: 32.h),
-                Container(
-                  width: 307.63.w,
-                  child: Text(
-                    'Nice to meet you',
-                    style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthFailure) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error.toString())),
+            );
+          }
 
+          if (state is AuthSuccess) {
+            context.go('/home');
+          }
+        },
+        builder: (context, state) {
+          return SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 58.h),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  SizedBox(height: 92.h),
+                  LogoWidget(),
+                  SizedBox(height: 32.h),
+                  Text('Nice to meet you',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                      textAlign: TextAlign.center),
+                  SizedBox(height: 4.h),
+                  Text('Before we begin, we need some details.',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodyLarge),
+                  SizedBox(height: 32.h),
 
-                    ),
-                    textAlign: TextAlign.center,
+                  // Username
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(labelText: 'Username'),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter your name';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(height: 4.w,),
-                Container(
-                  width: 307.63.w,
-                  child: Text(
-                    'Before we begin, we need some details.',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w400,
-                      color: Color(0xFF564E60),
+                  SizedBox(height: 24.h),
 
-                    ),
-                    textAlign: TextAlign.center,
+                  // Email
+                  TextFormField(
+                    controller: _emailController,
+                    decoration: const InputDecoration(labelText: 'Email'),
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      if (!RegExp(r'\S+@\S+\.\S+').hasMatch(value)) {
+                        return 'Please enter a valid email';
+                      }
+                      return null;
+                    },
                   ),
-                ),
-                SizedBox(height: 32.h),
-                Container(
-                  width: 363.66.w,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Usernaame',
-                      labelStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: const Color(0xFFBDBDBD),
-                      ),
+                  SizedBox(height: 24.h),
 
-                    ),
-                  ),
-                ),
-                SizedBox(height: 24.h),
-                Container(
-                  width: 363.66.w,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Enter your email',
-                      labelStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: const Color(0xFFBDBDBD),
-                      ),
-
-                    ),
-                  ),
-                ),
-                SizedBox(height: 24.h),
-                Container(
-                  width: 363.66.w,
-                  child: TextField(
+                  // Password
+                  TextFormField(
+                    controller: _passController,
                     obscureText: isPasswordVisible,
                     decoration: InputDecoration(
-                      labelText: 'password',
-                      labelStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: const Color(0xFFBDBDBD),
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 24.h),
-                Container(
-                  width: 363.66.w,
-                  child: TextField(
-                    obscureText: isPasswordVisible,
-                    decoration: InputDecoration(
-                      labelText: 'Confirm password',
-                      labelStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: const Color(0xFFBDBDBD),
-                        fontWeight: FontWeight.w400,
-                      ),
-                      suffixIcon:GestureDetector(
-                        onTap: () {
+                      labelText: 'Password',
+                      suffixIcon: IconButton(
+                        icon: Icon(isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                        onPressed: () {
                           setState(() {
                             isPasswordVisible = !isPasswordVisible;
                           });
                         },
-                        child: Icon(
-                          isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                          color: const Color(0xFF6A707C),
-                        ),
                       ),
                     ),
-                  ),
-                ),
-                SizedBox(height: 24.h),
-                Container(
-                  width: 363.66.w,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Handle login action
+                    validator: (value) {
+                     //should be at least 6 letters long
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter your password';
+                      }
+                      if (value.length < 6) {
+                        return 'Password must be at least 6 characters long';
+                      }
+                      return null;
                     },
+                  ),
+                  SizedBox(height: 24.h),
 
-                    child: Text(
-                      'Register ',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
+                  // Confirm Password
+                  TextFormField(
+                    controller: _confirmPassController,
+                    obscureText: isPasswordVisible,
+                    decoration: const InputDecoration(labelText: 'Confirm Password'),
+                    validator: (value) {
+                      if (value != _passController.text) {
+                        return 'Passwords do not match';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 24.h),
+
+                  // Register Button
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: state is AuthLoading ? null : _submit,
+                      child: state is AuthLoading
+                          ? CircularProgressIndicator(color: Theme.of(context).primaryColor)
+                          : Text('Register'),
                     ),
                   ),
-                ),
-                SizedBox(height: 24.h),
-                Text(
-                  "Or Register with",
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                SizedBox(height: 16.h),
-                SocialMediaLogin(),
-                SizedBox(height: 56.h),
-                RichText(
-                  text: TextSpan(
-                    text: 'Don\'t have an account? ',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
 
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'Login Now',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: Theme.of(context).primaryColor,
-                          fontWeight: FontWeight.w600,
+                  SizedBox(height: 24.h),
+                  Text('Or Register with', style: Theme.of(context).textTheme.bodyLarge),
+                  SizedBox(height: 16.h),
+                  SocialMediaLogin(),
+                  SizedBox(height: 56.h),
+
+                  RichText(
+                    text: TextSpan(
+                      text: 'Already have an account? ',
+                      style: Theme.of(context).textTheme.titleMedium,
+                      children: [
+                        TextSpan(
+                          text: 'Login Now',
+                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: Theme.of(context).primaryColor,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () => context.go('/login'),
                         ),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                           context.go('/login');
-                          },
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
 }
+
