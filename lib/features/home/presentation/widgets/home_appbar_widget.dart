@@ -5,7 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'greetingwidget.dart';
 
 class HomeAppbarWidget extends StatelessWidget {
-  const HomeAppbarWidget({super.key});
+  final String userName;
+  const HomeAppbarWidget({super.key, required this.userName});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class HomeAppbarWidget extends StatelessWidget {
               GreetingWidget(),
               SizedBox(height: 7.h),
               Text(
-                'Dipta Saha',
+                userName,
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                   color: Colors.white,

@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/core/services/authlocalStorageService.dart';
 import 'package:expense_tracker_app/features/home/presentation/widgets/greetingwidget.dart';
 import 'package:expense_tracker_app/features/home/presentation/widgets/home_appbar_widget.dart';
 import 'package:expense_tracker_app/features/home/presentation/widgets/home_total_balance_widget.dart';
@@ -15,11 +16,29 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String? userName;
+  @override
+  void initState() {
+    super.initState();
+    // Simulate fetching user name
+   _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final data = await Authlocalstorageservice.getAuthData();
+    final user = data['user'];
+
+    setState(() {
+      userName = user['fullName']; // Or 'email' or 'id' depending on your need
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: LayoutBody(
-        appBar: HomeAppbarWidget(),
+        appBar: HomeAppbarWidget(
+          userName: userName ?? 'User',
+        ),
         child: Padding(
           padding: EdgeInsets.all(20.sp),
           child: Column(

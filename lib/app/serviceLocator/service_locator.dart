@@ -4,6 +4,7 @@ import 'package:expense_tracker_app/core/network/network_executor.dart';
 import 'package:expense_tracker_app/features/auth/data/datasources/auth_datasource.dart';
 import 'package:expense_tracker_app/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:expense_tracker_app/features/auth/domain/repositories/auth_repository.dart';
+import 'package:expense_tracker_app/features/auth/domain/usecases/auth_login_use_case.dart';
 import 'package:expense_tracker_app/features/auth/domain/usecases/auth_register_use_case.dart';
 import 'package:get_it/get_it.dart';
 
@@ -27,6 +28,10 @@ void setUpServiceLocator(){
 
   serviceLocator.registerSingleton<AuthResgisterUseCase>(
     AuthResgisterUseCase(serviceLocator())
+  );
+
+  serviceLocator.registerSingleton<AuthLoginUseCase>(
+    AuthLoginUseCase(serviceLocator())
   );
 
 }

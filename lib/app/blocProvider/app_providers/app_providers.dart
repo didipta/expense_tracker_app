@@ -11,6 +11,7 @@ class AppProviders {
     ),
     BlocProvider<AuthBloc>(
       create: (context) => AuthBloc(
+        serviceLocator(),
         serviceLocator()
       )
     ),

@@ -31,8 +31,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _submit() {
     if (_formKey.currentState!.validate()) {
-      context.read<AuthBloc>().add(AuthRegisterRequested(
-        fullName: _nameController.text.trim(),
+      context.read<AuthBloc>().add(RegisterRequested(
+        fullName: "",
         email: _emailController.text.trim(),
         password: _passController.text.trim(),
       ));
