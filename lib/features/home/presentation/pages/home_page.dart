@@ -27,6 +27,8 @@ class _HomePageState extends State<HomePage> {
   Future<void> _loadUserData() async {
     final data = await Authlocalstorageservice.getAuthData();
     final user = data['user'];
+    
+    print("User Data: $user");
 
     setState(() {
       userName = user['fullName']; // Or 'email' or 'id' depending on your need

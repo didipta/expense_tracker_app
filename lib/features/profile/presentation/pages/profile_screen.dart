@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../app/network_setup/configurations.dart';
+import '../../../../core/services/authlocalStorageService.dart';
 import '../../../../shared/widgets/language_widget.dart';
 import '../widgets/profile_header.dart';
 import '../widgets/profile_menu_tile.dart';
@@ -74,8 +76,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ProfileMenuTile(
           icon: Icons.security,
           title: 'Login and security',
-          onTap: () {
-            context.go("/login");
+          onTap: () async {
+            await Authlocalstorageservice.clearAuthData();
+            Configurations.token = '';
+
+            context.go('/login');
+
           },
         ),
         ProfileMenuTile(

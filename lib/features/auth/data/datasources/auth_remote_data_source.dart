@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:expense_tracker_app/core/network/models/network_resonse.dart';
 import 'package:expense_tracker_app/core/network/models/request_model.dart';
 import 'package:expense_tracker_app/core/network/network_executor.dart';
@@ -7,6 +6,7 @@ import 'package:expense_tracker_app/core/services/authlocalStorageService.dart';
 import 'package:expense_tracker_app/features/auth/data/datasources/auth_datasource.dart';
 import 'package:expense_tracker_app/features/common/domain/entities/api_error.dart';
 
+import '../../../../app/network_setup/configurations.dart';
 import '../../domain/entities/user.dart';
 
 class AuthRemoteDataSource implements AuthDataSource
@@ -17,7 +17,7 @@ class AuthRemoteDataSource implements AuthDataSource
   final String _url_signUp = "auth/sign-up";
   final String _url_login = "auth/login";
   @override
-  Future<Either<ApiError, bool>> login(User user) {
+  Future<Either<ApiError, bool>> login(User user) async {
     final Map<String, dynamic> formData = {
       "email": user.email,
       "password": user.password,
@@ -25,9 +25,11 @@ class AuthRemoteDataSource implements AuthDataSource
 
     return networkExecutor.postRequest(
       RequestModel(path:_url_login, formData: formData),
-    ).then((NetworkResponse response) {
-      if (response.statusCode == 200 || response.statusCode == 201) {
+    ).then((NetworkResponse response) async {
+      if (response.statusCode == 200 || response.statusCode == 201)  {
         Authlocalstorageservice.saveAuthData(response.data);
+        await Configurations.loadTokenFromStorage(); // Load token to memory
+        final NetworkResponse responseprofile= await networkExecutor.getRequest(RequestModel(path: "/users/profile"));
         return Right(true);
       } else {
         return Left(ApiError(
