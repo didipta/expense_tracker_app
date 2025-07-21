@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -29,10 +30,16 @@ class _RegisterPageState extends State<RegisterPage> {
   final _passController = TextEditingController();
   final _confirmPassController = TextEditingController();
 
-  void _submit() {
+  void _submit() async {
+    await FirebaseAnalytics.instance.logEvent(
+      name: 'sign_up',
+      parameters: {
+        'method': _emailController.text.trim(),
+      },
+    );
     if (_formKey.currentState!.validate()) {
       context.read<AuthBloc>().add(RegisterRequested(
-        fullName: "",
+        fullName: _nameController.text.trim(),
         email: _emailController.text.trim(),
         password: _passController.text.trim(),
       ));

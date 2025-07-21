@@ -119,11 +119,8 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      FirebaseAnalytics.instance.logEvent(
-                        name: 'login_button_pressed',
-                        parameters: {'button': 'login'},
-                      );
+                    onPressed: () async {
+                      await FirebaseAnalytics.instance.logLogin(loginMethod:_emailController.text );
 
                       // 🔥 Dispatch LoginRequested event to AuthBloc
                       context.read<AuthBloc>().add(

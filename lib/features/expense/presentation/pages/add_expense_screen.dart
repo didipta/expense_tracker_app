@@ -17,7 +17,7 @@ class AddExpenseScreen extends StatefulWidget {
 
 class _AddExpenseScreenState extends State<AddExpenseScreen> {
   final TextEditingController nameController = TextEditingController(text: 'Netflix');
-  final TextEditingController amountController = TextEditingController(text: '\$ 48.00');
+  final TextEditingController amountController = TextEditingController(text: '48.00');
   DateTime selectedDate = DateTime(2025, 4, 17);
 
   void _pickDate() async {
@@ -122,8 +122,8 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
               GestureDetector(
                 onTap: () {},
                 child: DottedBorderBox(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    height: 50.h,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: const [
@@ -135,6 +135,22 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
                         ),
                       ],
                     ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  // Handle save action
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Expense saved successfully!')),
+                  );
+                  context.go('/home');
+                },
+                child: Center(
+                  child: Text(
+                    "Save Expense",
+                    style: theme.textTheme.titleMedium?.copyWith(color: Colors.white),
                   ),
                 ),
               ),
