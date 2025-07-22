@@ -9,8 +9,12 @@ class Configurations {
 
   static String token = ''; // ✅ Make it mutable
 
+  static String refreshToken = ''; // ✅ Make it mutable
+
   static Future<void> loadTokenFromStorage() async {
     final authData = await Authlocalstorageservice.getAuthData();
     token = authData['accessToken']['token'] ?? '';
+
+    print('Loaded token: $token'); // Debugging line
   }
 }

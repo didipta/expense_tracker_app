@@ -2,21 +2,17 @@ import 'package:dio/dio.dart';
 
 class CoreInterceptor extends Interceptor {
   final String basePath;
-  final String accessToken;
+  final String Function() getAccessToken;
 
-  CoreInterceptor({required this.basePath, required this.accessToken});
+  CoreInterceptor({required this.basePath, required this.getAccessToken});
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     options.path = basePath + options.path;
-    if (accessToken.isNotEmpty) {
-      options.headers.addAll({'Authorization': 'Bearer $accessToken'});
+    final token = getAccessToken();
+    if (token.isNotEmpty) {
+      options.headers.addAll({'Authorization': 'Bearer $token'});
     }
-    options.validateStatus = (status) {
-      if (status == null) return false;
-      return status >= 200 && status <= 204;
-    };
-
-    super.onRequest(options, handler);
+    handler.next(options);
   }
 }

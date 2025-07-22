@@ -29,7 +29,6 @@ class AuthRemoteDataSource implements AuthDataSource
       if (response.statusCode == 200 || response.statusCode == 201)  {
         Authlocalstorageservice.saveAuthData(response.data);
         await Configurations.loadTokenFromStorage(); // Load token to memory
-        final NetworkResponse responseprofile= await networkExecutor.getRequest(RequestModel(path: "/users/profile"));
         return Right(true);
       } else {
         return Left(ApiError(

@@ -1,11 +1,11 @@
+import 'package:expense_tracker_app/core/services/format_date_time.dart';
+import 'package:expense_tracker_app/features/expense/domain/entities/expense.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../expense/domain/entities/transaction.dart';
-
 class TransactionItem extends StatelessWidget {
-  final Transaction transaction;
+  final Expense transaction;
 
   const TransactionItem({required this.transaction});
 
@@ -44,7 +44,7 @@ class TransactionItem extends StatelessWidget {
                   ),
                   SizedBox(height: 6.h),
                   Text(
-                    transaction.date,
+                    formatDateTime(transaction.date),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: Color(0xFF666666),
                     ),
