@@ -10,3 +10,9 @@ class AddExpenseEvent extends ExpenseEvent {
 
   AddExpenseEvent(this.expense);
 }
+
+class DeleteExpenseEvent extends ExpenseEvent {
+  final int id;
+
+  DeleteExpenseEvent(this.id);
+}

@@ -3,6 +3,7 @@ import 'package:expense_tracker_app/shared/widgets/layout_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 
@@ -50,15 +51,24 @@ class _AddExpenseScreenState extends State<AddExpenseScreen> {
     return BlocListener<ExpenseBloc, ExpenseState>(
       listener: (context, state) {
         if (state is ExpenseAddedState) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Expense saved successfully!')),
+          Fluttertoast.showToast(
+            msg: 'Expense saved successfully!',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
           );
           context.go('/home');
         } else if (state is ExpenseError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error: ${state.message}')),
+          Fluttertoast.showToast(
+            msg: 'Error: ${state.message}',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
           );
         }
+
       },
       child: Scaffold(
         body: LayoutBody(
