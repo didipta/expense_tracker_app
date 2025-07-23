@@ -27,10 +27,8 @@ Integrated analytics (e.g., Firebase Analytics) to track user behavior, screen t
 - Obfuscation support for release builds
 
 ✅ **Unit Testing**  
-Testable architecture using `mocktail`, `bloc_test`, and `flutter_test`. Covers:
-- Business logic
+Testable architecture using `mocktail`. Covers:
 - Use cases
-- Data handling
 
 ✅ **Clean Architecture**  
 Layered architecture with `data`, `domain`, and `presentation` layers for high maintainability and testability.
@@ -48,7 +46,7 @@ Consuming RESTful APIs using `Dio` with:
 - Error management
 
 ✅ **Offline-First**  
-Built with local caching using `sqflite`, `hive`, or `isar` to ensure data persistence even without an internet connection.
+Built with local caching using `sqflite` to ensure data persistence even without an internet connection.
 
 ---
 
