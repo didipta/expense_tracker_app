@@ -39,7 +39,7 @@ class _ExpenseTrackerAppState extends State<ExpenseTrackerApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Expense Tracker',
-            theme: themeData,
+            theme:  ThemeData.light(),
             home: Scaffold(
 
               body: Center(child: CircularProgressIndicator()),

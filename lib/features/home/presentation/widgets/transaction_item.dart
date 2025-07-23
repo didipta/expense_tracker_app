@@ -80,7 +80,7 @@ class TransactionItem extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      backgroundColor: Theme.of(context).cardColor,
+      backgroundColor: Colors.white,
       builder: (BuildContext context) {
         return Padding(
           padding: EdgeInsets.all(20.w),
@@ -121,6 +121,7 @@ class TransactionItem extends StatelessWidget {
                       context: context,
                       builder: (BuildContext dialogContext) {
                         return AlertDialog(
+                          backgroundColor: Colors.white,
                           title: const Text('Confirm Deletion'),
                           content: const Text('Are you sure you want to delete this transaction?'),
                           actions: [

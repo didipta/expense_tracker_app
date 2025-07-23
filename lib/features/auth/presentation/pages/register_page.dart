@@ -1,12 +1,9 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../core/theme/material_color.dart';
 import '../../../../shared/widgets/logo_widget.dart';
 import '../blocs/auth_bloc.dart';
 import '../blocs/auth_event.dart';
