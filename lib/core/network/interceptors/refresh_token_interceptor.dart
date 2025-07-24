@@ -22,7 +22,7 @@ class RefreshTokenInterceptor extends Interceptor {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) async {
-    if (err.response?.statusCode == 401 && !_isRefreshing) {
+    if (err.response?.statusCode == '401' && !_isRefreshing) {
       _isRefreshing = true;
 
       try {
@@ -53,7 +53,7 @@ class RefreshTokenInterceptor extends Interceptor {
 
         return handler.reject(err);
       }
-    } else if (err.response?.statusCode == 401 && _isRefreshing) {
+    } else if (err.response?.statusCode == '401' && _isRefreshing) {
       _retryQueue.add(() {
         final opts = err.requestOptions;
         opts.headers['Authorization'] = 'Bearer ${Configurations.token}';

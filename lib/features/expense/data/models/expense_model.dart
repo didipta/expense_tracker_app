@@ -6,12 +6,15 @@ class ExpenseModel implements BaseModel<Expense>{
   final String title;
   final int amount;
   final DateTime date;
+  int? isSynced;
+
 
   ExpenseModel({
     this.id,
     required this.title,
     required this.amount,
     required this.date,
+    this.isSynced,
   });
 
   factory ExpenseModel.fromJson(Map<String, dynamic> json) {
@@ -20,6 +23,7 @@ class ExpenseModel implements BaseModel<Expense>{
       title: json['title'] as String,
       amount: json['amount'] as int,
       date: DateTime.parse(json['date'] as String),
+      isSynced: json['isSynced'] as int? ?? 0,
     );
   }
 
@@ -29,6 +33,7 @@ class ExpenseModel implements BaseModel<Expense>{
       'title': title,
       'amount': amount,
       'date': date.toIso8601String(),
+      'isSynced': isSynced ?? 0,
     };
     if (withId && id != null) {
       map['id'] = id;

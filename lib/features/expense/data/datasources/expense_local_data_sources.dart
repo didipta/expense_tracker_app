@@ -18,7 +18,8 @@ class ExpenseLocalDataSources implements ExpenseDataSource {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           title TEXT,
           amount INTEGER,
-          date TEXT
+          date TEXT,
+          isSynced INTEGER DEFAULT 0
         )
       ''');
     });
@@ -32,6 +33,7 @@ class ExpenseLocalDataSources implements ExpenseDataSource {
         title: expense.title,
         amount: expense.amount,
         date: expense.date,
+        isSynced: expense.isSynced, // Offline data is unsynced by default
       );
       final id = await db.insert(
         _table,
@@ -43,7 +45,7 @@ class ExpenseLocalDataSources implements ExpenseDataSource {
           title: model.title,
           amount: model.amount,
           date: model.date,
-        )
+        ),
       );
     } catch (e) {
       return Left(ApiError(message: 'Failed to add expense: $e'));
@@ -78,10 +80,11 @@ class ExpenseLocalDataSources implements ExpenseDataSource {
     try {
       final db = await dbHelper.database;
       final model = ExpenseModel(
-        id: expense.id! ,
+        id: expense.id!,
         title: expense.title,
         amount: expense.amount,
         date: expense.date,
+        isSynced: 0, // Mark as unsynced when updated locally
       );
       await db.update(
         _table,
@@ -93,5 +96,34 @@ class ExpenseLocalDataSources implements ExpenseDataSource {
     } catch (e) {
       return Left(ApiError(message: 'Failed to update expense: $e'));
     }
+  }
+
+  //clearAllExpenses
+
+  Future<void> clearAllExpenses() async {
+    final db = await dbHelper.database;
+    await db.delete(_table);
+  }
+
+  // ✅ Get all expenses where isSynced = 0
+  Future<List<ExpenseModel>> getUnsyncedExpenses() async {
+    final db = await dbHelper.database;
+    final result = await db.query(
+      _table,
+      where: 'isSynced = ?',
+      whereArgs: [0],
+    );
+    return result.map((e) => ExpenseModel.fromJson(e)).toList();
+  }
+
+  // ✅ Mark a specific expense as synced (after hitting API)
+  Future<void> markExpenseAsSynced(int id) async {
+    final db = await dbHelper.database;
+    await db.update(
+      _table,
+      {'isSynced': 1},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
   }
 }
