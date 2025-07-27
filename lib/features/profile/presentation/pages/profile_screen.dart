@@ -1,3 +1,4 @@
+import 'package:expense_tracker_app/features/auth/domain/entities/user.dart';
 import 'package:expense_tracker_app/features/profile/presentation/widgets/profile_edit_view.dart';
 import 'package:expense_tracker_app/features/profile/presentation/widgets/profile_info_view.dart';
 import 'package:expense_tracker_app/shared/widgets/layout_body.dart';
@@ -21,12 +22,32 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   int selectedIndex = 0;
+  var profileData=null;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _loadProfileData();
+    });
+  }
+
+  Future<void> _loadProfileData() async {
+    profileData = await Authlocalstorageservice.getAuthData();
+    setState(() {});
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
     var container = [
       buildProfileMainpart(),
       ProfileInfoView(
+        user: User(fullName: profileData["user"]["fullName"]?? "",
+            email: profileData["user"]["email"]?? "",
+           password: profileData["user"]["password"]?? ""
+        ),
         onEditPressed: () {
           setState(() {
             selectedIndex = 2;

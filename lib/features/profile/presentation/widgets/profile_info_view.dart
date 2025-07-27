@@ -1,9 +1,11 @@
+import 'package:expense_tracker_app/features/auth/domain/entities/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProfileInfoView extends StatelessWidget {
+  final User ? user;
   Function ? onEditPressed;
-  ProfileInfoView({super.key, this.onEditPressed});
+  ProfileInfoView({super.key, this.onEditPressed, this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -38,8 +40,8 @@ class ProfileInfoView extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10),
-        _infoRow("Name", "Enjelin Morgeana"),
-        _infoRow("Email", "enjelinmorgeana@gmail.com"),
+        _infoRow("Name", user!.fullName),
+        _infoRow("Email", user!.email),
         _infoRow("Password", "********", true),
         _infoRow("Number of cards", "1"),
         _infoRow("Number of Bank Accounts", "2"),
