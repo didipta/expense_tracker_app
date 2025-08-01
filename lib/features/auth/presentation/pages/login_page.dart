@@ -1,4 +1,3 @@
-import 'package:expense_tracker_app/core/localization/l10n/app_localizations.dart';
 import 'package:expense_tracker_app/shared/widgets/language_widget.dart';
 import 'package:expense_tracker_app/shared/widgets/logo_widget.dart';
 import 'package:expense_tracker_app/features/auth/presentation/widgets/social_media_login.dart';
@@ -10,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../localization/l10n/app_localizations.dart';
 import '../blocs/auth_bloc.dart';
 import '../blocs/auth_event.dart';
 import '../blocs/auth_state.dart';

@@ -7,7 +7,7 @@ import 'package:expense_tracker_app/features/home/presentation/pages/home_page.d
 import 'package:expense_tracker_app/features/main_bottom_nav/presentation/page/main_botton_nav.dart';
 import 'package:expense_tracker_app/features/splash/presentation/pages/splash_page.dart';
 
-import '../app/network_setup/configurations.dart';
+import 'network_setup/configurations.dart';
 
 final GoRouter router = GoRouter(
   initialLocation: '/',

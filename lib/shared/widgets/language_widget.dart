@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/localization/blocs/language_selector_cubit.dart';
+import '../../localization/blocs/language_selector_cubit.dart';
+
 
 class LanguageWidget extends StatelessWidget {
   const LanguageWidget({super.key});

@@ -1,14 +1,14 @@
 
-import 'package:expense_tracker_app/core/localization/l10n/app_localizations.dart';
 import 'package:expense_tracker_app/core/theme/theme_data.dart';
-import 'package:expense_tracker_app/routes/routers.dart';
+import 'package:expense_tracker_app/app/routers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app/blocProvider/app_providers/app_providers.dart';
 import 'app/network_setup/configurations.dart';
-import 'core/localization/blocs/language_selector_cubit.dart';
+import 'localization/blocs/language_selector_cubit.dart';
+import 'localization/l10n/app_localizations.dart';
 
 class ExpenseTrackerApp extends StatefulWidget {
   const ExpenseTrackerApp({super.key});
